@@ -292,3 +292,11 @@ describe "CoffeeScript grammar", ->
     expect(tokens[0]).toEqual value: "foo ", scopes: ["source.coffee", "entity.name.function.coffee"]
     expect(tokens[1]).toEqual value: "baz", scopes: ["source.coffee"]
     expect(tokens[3]).toEqual value: "@bar", scopes: ["source.coffee", "variable.other.readwrite.instance.coffee"]
+
+  it "tokenizes function definitions with multiline argument list", ->
+    {tokens} = grammar.tokenizeLine """
+      bar: (
+        x
+        y
+      ) -> x
+    """
